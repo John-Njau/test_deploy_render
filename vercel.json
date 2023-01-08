@@ -1,17 +1,26 @@
 {
     "version": 2,
     "builds": [
-      {
-        "src": "*.py",
-        "use": "@vercel/python",
-        "config": {
-          "maxLambdaSize": "15mb"
+        {
+            "src": "mysite/wsgi.py",
+            "use": "@vercel/python",
+            "config": {
+                "maxLambdaSize": "15mb"
+            }
         }
-      }
+    ],
+    "routes": [
+        {
+            "src": "/(.*)",
+            "headers": {
+                "cache-control": "s-maxage=31536000, immutable"
+            },
+            "dest": "mysite/wsgi.py"
+        }
     ],
     "env": {
-      "SECRET_KEY": "hbvhdfuhevgyfvtydwicetr",
-      "DEBUG": "false",
-      "DATABASE_URL": "postgresql://john:moringa@localhost:5432/mysite"
+        "SECRET_KEY": "hbvhdfuhevgyfvtydwicetr",
+        "DEBUG": "false",
+        "DATABASE_URL": "postgresql://john:moringa@localhost:5432/mysite"
     }
-  }
+}
