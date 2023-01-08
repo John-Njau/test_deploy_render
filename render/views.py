@@ -12,5 +12,4 @@ class IndexView(generic.ListView):
     context_object_name = 'watch'
 
 
-   
 
