@@ -5,16 +5,25 @@
             "src": "mysite/wsgi.py",
             "use": "@vercel/python",
             "config": {
-                "maxLambdaSize": "15mb"
+                "maxLambdaSize": "15mb",
+                "runtime": "3.10.6"
+            }
+        },
+        {
+            "src": "build_files.sh",
+            "use": "@vercel/static-build",
+            "config": {
+                "distDir": "staticfiles_build"
             }
         }
     ],
     "routes": [
         {
+            "src": "/static/(.*)",
+            "dest": "/static/$1"
+        },
+        {
             "src": "/(.*)",
-            "headers": {
-                "cache-control": "s-maxage=31536000, immutable"
-            },
             "dest": "mysite/wsgi.py"
         }
     ],
