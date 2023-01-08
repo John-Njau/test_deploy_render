@@ -1,0 +1,17 @@
+{
+    "version": 1,
+    "builds": [
+      {
+        "src": "*.py",
+        "use": "@vercel/python",
+        "config": {
+          "maxLambdaSize": "15mb"
+        }
+      }
+    ],
+    "env": {
+      "SECRET_KEY": "hbvhdfuhevgyfvtydwicetr",
+      "DEBUG": "false",
+      "DATABASE_URL": "postgresql://john:moringa@localhost:5432/mysite"
+    }
+  }
